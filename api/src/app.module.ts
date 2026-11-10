@@ -7,6 +7,9 @@ import { validateEnvironment } from './config/environment';
 import { config } from 'process';
 import { databaseOptions } from './database/database.option';
 import { UsersModule } from './src/users/users.module';
+import { AuthModule } from './src/auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { Guard } from './src/auth/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -21,8 +24,15 @@ import { UsersModule } from './src/users/users.module';
       },
     }),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: Guard,
+    },
+  ],
 })
 export class AppModule {}

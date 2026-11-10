@@ -14,6 +14,7 @@ import {
   CreateUserDto,
   UpdateProfileDto,
 } from './dto/users.dto';
+import { Public } from '../auth/public.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -29,6 +30,7 @@ export class UsersController {
     return this.usersService.getOneById(id);
   }
 
+  @Public()
   @Post('create')
   createUser(@Body() dto: CreateUserDto) {
     return this.usersService.createUser(dto);
