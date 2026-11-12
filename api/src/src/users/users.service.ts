@@ -109,7 +109,7 @@ export class UsersService {
       const result = await this.usersRepository.delete({ id: id });
 
       if (result.affected === 0) {
-        throw new NotFoundException('ไม่พับ User ที่คุณต้องการลบ');
+        throw new NotFoundException('ไม่พบ User ที่คุณต้องการลบ');
       }
 
       return { message: 'ลบบัญชีเรียบร้อย' };
