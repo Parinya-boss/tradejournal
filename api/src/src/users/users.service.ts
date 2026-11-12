@@ -22,12 +22,13 @@ export class UsersService {
   ) {}
 
   private toUserResponse(
-    user: Pick<User, 'id' | 'email' | 'display_name' | 'createdAt'>,
+    user: Pick<User, 'id' | 'email' | 'display_name' | 'role' | 'createdAt'>,
   ) {
     return {
       id: user.id,
       email: user.email,
       display_name: user.display_name,
+      role: user.role,
       createdAt: user.createdAt,
     };
   }

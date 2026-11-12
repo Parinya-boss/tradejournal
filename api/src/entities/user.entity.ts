@@ -7,6 +7,11 @@ import {
 } from 'typeorm';
 import { TradingAccount } from './trandingAccount.entity';
 
+export enum UserRole {
+  CUSTOMER = 'CUSTOMER',
+  ADMIN = 'ADMIN',
+}
+
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
@@ -31,6 +36,13 @@ export class User {
     select: false,
   })
   password_hash!: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.CUSTOMER,
+  })
+  role!: UserRole;
 
   @CreateDateColumn({
     type: 'datetime',
