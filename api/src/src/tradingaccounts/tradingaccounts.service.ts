@@ -66,11 +66,16 @@ export class TradingaccountsService {
       throw new NotFoundException('ไม่พบบัญชีที่คุณต้องการแก้ไข');
     }
 
-    getAccount.name = dto.name;
+    const result = await this.tradingAccountRepository.update(
+      { id },
+      { name: dto.name },
+    );
 
-    const saveAccount = await this.tradingAccountRepository.save(getAccount);
+    if (result.affected === 0) {
+      throw new NotFoundException('ไม่พบบัญชีที่คุณต้องการแก้ไข');
+    }
 
-    return saveAccount;
+    return this.getOneAccount(id);
   }
 
   async deleteTradingAccount(userId: number, id: number) {

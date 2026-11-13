@@ -37,6 +37,14 @@ export class TradingAccount {
   name!: string;
 
   @Column({
+    type: 'decimal',
+    precision: 18,
+    scale: 2,
+    default: '0.00',
+  })
+  balance!: string;
+
+  @Column({
     type: 'varchar',
     default: 'USD',
   })
