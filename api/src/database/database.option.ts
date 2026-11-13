@@ -3,6 +3,7 @@ import { DataSourceOptions } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { TradingAccount } from '../entities/trandingAccount.entity';
 import { Trade } from '../entities/trade.entity';
+import { Transaction } from '../entities/transaction.entity';
 
 export function databaseOptions(config: ConfigService): DataSourceOptions {
   return {
@@ -11,7 +12,7 @@ export function databaseOptions(config: ConfigService): DataSourceOptions {
     username: config.getOrThrow<string>('DB_USERNAME'),
     password: config.getOrThrow<string>('DB_PASSWORD'),
     database: config.getOrThrow<string>('DB_DATABASE'),
-    entities: [User, TradingAccount, Trade],
+    entities: [User, TradingAccount, Trade, Transaction],
     synchronize: false,
     migrationsRun: false,
   };

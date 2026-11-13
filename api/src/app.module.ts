@@ -11,6 +11,7 @@ import { AuthModule } from './src/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { Guard } from './src/auth/jwt-auth.guard';
 import { TradingaccountsModule } from './src/tradingaccounts/tradingaccounts.module';
+import { TransactionsModule } from './src/transactions/transactions.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { TradingaccountsModule } from './src/tradingaccounts/tradingaccounts.mod
     UsersModule,
     AuthModule,
     TradingaccountsModule,
+    TransactionsModule,
   ],
   controllers: [AppController],
   providers: [
