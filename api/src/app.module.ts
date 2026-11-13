@@ -12,6 +12,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { Guard } from './src/auth/jwt-auth.guard';
 import { TradingaccountsModule } from './src/tradingaccounts/tradingaccounts.module';
 import { TransactionsModule } from './src/transactions/transactions.module';
+import { TradesModule } from './src/trades/trades.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { TransactionsModule } from './src/transactions/transactions.module';
     AuthModule,
     TradingaccountsModule,
     TransactionsModule,
+    TradesModule,
   ],
   controllers: [AppController],
   providers: [
