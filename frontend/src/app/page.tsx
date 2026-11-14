@@ -5,9 +5,9 @@ type FeatureCardProps = {
 
 function FeatureCard({ title, description }: FeatureCardProps) {
   return (
-    <div className="rounded-x1 border border-slate-800 bg-slate-900 p-5">
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
       <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="mt2 text-sm text-slate-300">{description}</p>
+      <p className="mt-2 text-sm text-slate-300">{description}</p>
     </div>
   );
 }
