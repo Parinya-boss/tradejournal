@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type User = {
   display_name: string;
@@ -66,12 +67,12 @@ export default function DashboardPage() {
           <div className="mt-6 rounded-xl border border-slate-800 bg-slate-900 p-5">
             <p>กรุณาเข้าสู่ระบบก่อน</p>
 
-            <a
+            <Link
               href="/login"
               className="mt-3 inline-block text-emerald-400 underline"
             >
               ไปหน้าเข้าสู่ระบบ
-            </a>
+            </Link>
           </div>
         )}
 

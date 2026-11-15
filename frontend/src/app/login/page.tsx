@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, type SubmitEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -46,6 +49,7 @@ export default function LoginPage() {
 
       setSubmitted(true);
       setPassword("");
+      router.replace("/dashboard");
     } catch {
       setError("ไม่สามารถเชื่อมต่อ Next.js ได้");
     } finally {

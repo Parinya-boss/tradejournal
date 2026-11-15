@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type FeatureCardProps = {
   title: string;
   description: string;
@@ -25,6 +27,13 @@ export default function Home() {
         <p className="mt-4 text-slate-300">
           จัดการบัญชีและติดตามรายการฝากถอนได้ในที่เดียว
         </p>
+
+        <Link
+          href="/login"
+          className="mt-6 inline-block rounded-lg bg-emerald-600 px-5 py-3 font-semibold text-white hover:bg-emerald-500"
+        >
+          เข้าสู่ระบบ
+        </Link>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <FeatureCard
