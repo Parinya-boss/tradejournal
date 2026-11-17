@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 import AccountDetailPage from "./pages/AccountDetailPage";
 import LoginPage from "./pages/LoginPage";
@@ -28,7 +28,19 @@ export default function App() {
         }
       />
 
-      <Route path="/accounts/:accountId" element={<AccountDetailPage />} />
+      <Route
+        path="/accounts/:accountId"
+        element={
+          session ? (
+            <AccountDetailPage
+              key={session.user.email}
+              accessToken={session.accessToken}
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
 
       <Route path="*" element={<p className="p-8">ไม่พบหน้าที่ต้องการ</p>} />
     </Routes>
