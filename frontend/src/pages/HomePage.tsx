@@ -19,6 +19,12 @@ export default function HomePage({ session, onLogout }: HomePageProps) {
             <div>
               <p>ยินดีต้อนรับ {session.user.display_name}</p>
               <p className="text-sm text-slate-400">{session.user.email}</p>
+              <p className="text-sm text-slate-400">
+                สิทธิ์:
+                {session.user.role === "CUSTOMER"
+                  ? " ผู้ใช้งานทั่วไป"
+                  : " ผู้ดูแลระบบ"}
+              </p>
             </div>
 
             <button
@@ -29,6 +35,15 @@ export default function HomePage({ session, onLogout }: HomePageProps) {
               ออกจากระบบ
             </button>
           </div>
+
+          {session.user.role === "CUSTOMER" && (
+            <Link
+              to="/accounts/new"
+              className="mt-6 inline-block rounded bg-emerald-400 px-4 py-2 text-slate-950"
+            >
+              สร้างบัญชีเทรด
+            </Link>
+          )}
 
           <TradingAccountList
             key={session.user.email}
