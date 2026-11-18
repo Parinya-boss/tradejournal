@@ -1,6 +1,7 @@
 export type CurrentUser = {
   email: string;
   display_name: string;
+  role: "CUSTOMER" | "ADMIN";
 };
 
 export async function getCurrentUser(
@@ -29,7 +30,10 @@ export async function getCurrentUser(
     !("email" in data) ||
     typeof data.email !== "string" ||
     !("display_name" in data) ||
-    typeof data.display_name !== "string"
+    typeof data.display_name !== "string" ||
+    !("role" in data) ||
+    typeof data.role !== "string" ||
+    (data.role !== "CUSTOMER" && data.role !== "ADMIN")
   ) {
     throw new Error("รูปแบบข้อมูลผู้ใช้ที่ตอบกลับ ไม่ถูกต้อง");
   }
@@ -37,5 +41,6 @@ export async function getCurrentUser(
   return {
     email: data.email,
     display_name: data.display_name,
+    role: data.role,
   };
 }

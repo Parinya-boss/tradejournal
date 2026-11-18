@@ -4,6 +4,7 @@ import AccountDetailPage from "./pages/AccountDetailPage";
 import LoginPage from "./pages/LoginPage";
 import { useState } from "react";
 import type { AuthSession } from "./features/auth/types";
+import CreateTradingAccountPage from "./pages/CreateTradingAccountPage";
 
 export default function App() {
   const [session, setSession] = useState<AuthSession | null>(null);
@@ -25,6 +26,20 @@ export default function App() {
               setSession({ accessToken, user })
             }
           />
+        }
+      />
+
+      <Route
+        path="/accounts/new"
+        element={
+          session?.user.role === "CUSTOMER" ? (
+            <CreateTradingAccountPage
+              key={session.user.email}
+              accessToken={session.accessToken}
+            />
+          ) : (
+            <Navigate to={session ? "/" : "/login"} replace />
+          )
         }
       />
 
