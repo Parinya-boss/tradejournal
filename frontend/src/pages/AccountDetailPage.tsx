@@ -2,9 +2,11 @@ import { Link, useParams } from "react-router";
 import type { TradingAccount } from "../features/trading-accounts/api/getMyTradingAccounts";
 import { useEffect, useState } from "react";
 import { getMyTradingAccount } from "../features/trading-accounts/api/getMyTradingAccount";
+import TransactionHistorySection from "../features/transactions/components/TransactionHistorySection";
 
 type AccountDetailPageProps = {
   accessToken: string;
+  canViewTransactions: boolean;
 };
 
 type AccountDetailState =
@@ -16,10 +18,12 @@ type AccountDetailState =
 type AccountDetailContentProps = {
   accessToken: string;
   accountId: string;
+  canViewTransactions: boolean;
 };
 
 export default function AccountDetailPage({
   accessToken,
+  canViewTransactions,
 }: AccountDetailPageProps) {
   const { accountId } = useParams();
 
@@ -39,6 +43,7 @@ export default function AccountDetailPage({
       key={accountId}
       accessToken={accessToken}
       accountId={accountId}
+      canViewTransactions={canViewTransactions}
     />
   );
 }
@@ -46,6 +51,7 @@ export default function AccountDetailPage({
 function AccountDetailContent({
   accessToken,
   accountId,
+  canViewTransactions,
 }: AccountDetailContentProps) {
   const [state, setState] = useState<AccountDetailState>({
     status: "loading",
@@ -120,6 +126,14 @@ function AccountDetailContent({
           <p>
             ยอดคงเหลือ: {state.account.balance} {state.account.currency}
           </p>
+          {canViewTransactions && (
+            <TransactionHistorySection
+              key={state.account.id}
+              accessToken={accessToken}
+              tradingAccountId={state.account.id}
+              currency={state.account.currency}
+            />
+          )}
         </div>
       )}
 

@@ -50,6 +50,7 @@ export default function App() {
             <AccountDetailPage
               key={session.user.email}
               accessToken={session.accessToken}
+              canViewTransactions={session.user.role === "CUSTOMER"}
             />
           ) : (
             <Navigate to="/login" replace />
