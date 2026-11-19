@@ -8,7 +8,7 @@ TradeJournal is a work-in-progress full-stack application for managing trading a
 
 - Sign in and view the current user's trading accounts.
 - Create a trading account and view its details using a dynamic route.
-- View deposit and withdrawal history, including status and date.
+- Create deposit and withdrawal requests and view their history, including status and date.
 
 ### Backend API
 
@@ -19,8 +19,8 @@ TradeJournal is a work-in-progress full-stack application for managing trading a
 
 ### In progress
 
-- The frontend does not yet include forms for creating deposit or withdrawal requests or managing trades; those operations are available through the API.
 - The frontend keeps the login session in memory, so refreshing the page signs the user out.
+- Trade record management is currently available through the API only.
 
 ## Tech stack
 

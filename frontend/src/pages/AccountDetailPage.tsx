@@ -126,6 +126,16 @@ function AccountDetailContent({
           <p>
             ยอดคงเหลือ: {state.account.balance} {state.account.currency}
           </p>
+
+          {canViewTransactions && (
+            <Link
+              to={`/accounts/${state.account.id}/transactions/new`}
+              className="mt-4 inline-block rounded bg-emerald-400 px-4 py-2 text-slate-950 hover:bg-emerald-300"
+            >
+              ส่งคำขอฝาก-ถอน
+            </Link>
+          )}
+
           {canViewTransactions && (
             <TransactionHistorySection
               key={state.account.id}
