@@ -6,7 +6,7 @@ import TransactionHistorySection from "../features/transactions/components/Trans
 
 type AccountDetailPageProps = {
   accessToken: string;
-  canViewTransactions: boolean;
+  isCustomer: boolean;
 };
 
 type AccountDetailState =
@@ -18,12 +18,12 @@ type AccountDetailState =
 type AccountDetailContentProps = {
   accessToken: string;
   accountId: string;
-  canViewTransactions: boolean;
+  isCustomer: boolean;
 };
 
 export default function AccountDetailPage({
   accessToken,
-  canViewTransactions,
+  isCustomer,
 }: AccountDetailPageProps) {
   const { accountId } = useParams();
 
@@ -43,7 +43,7 @@ export default function AccountDetailPage({
       key={accountId}
       accessToken={accessToken}
       accountId={accountId}
-      canViewTransactions={canViewTransactions}
+      isCustomer={isCustomer}
     />
   );
 }
@@ -51,7 +51,7 @@ export default function AccountDetailPage({
 function AccountDetailContent({
   accessToken,
   accountId,
-  canViewTransactions,
+  isCustomer,
 }: AccountDetailContentProps) {
   const [state, setState] = useState<AccountDetailState>({
     status: "loading",
@@ -127,7 +127,7 @@ function AccountDetailContent({
             ยอดคงเหลือ: {state.account.balance} {state.account.currency}
           </p>
 
-          {canViewTransactions && (
+          {isCustomer && (
             <Link
               to={`/accounts/${state.account.id}/transactions/new`}
               className="mt-4 inline-block rounded bg-emerald-400 px-4 py-2 text-slate-950 hover:bg-emerald-300"
@@ -136,7 +136,18 @@ function AccountDetailContent({
             </Link>
           )}
 
-          {canViewTransactions && (
+          {isCustomer && (
+            <div>
+              <Link
+                to={`/accounts/${state.account.id}/trades`}
+                className="mt-4 inline-block text-emerald-400 underline"
+              >
+                ดูประวัติการเทรด
+              </Link>
+            </div>
+          )}
+
+          {isCustomer && (
             <TransactionHistorySection
               key={state.account.id}
               accessToken={accessToken}

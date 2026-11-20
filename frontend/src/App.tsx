@@ -6,6 +6,7 @@ import { useState } from "react";
 import type { AuthSession } from "./features/auth/types";
 import CreateTradingAccountPage from "./pages/CreateTradingAccountPage";
 import CreateTransactionPage from "./pages/CreateTransactionPage";
+import TradeHistoryPage from "./pages/TradeHistoryPage";
 
 export default function App() {
   const [session, setSession] = useState<AuthSession | null>(null);
@@ -51,7 +52,7 @@ export default function App() {
             <AccountDetailPage
               key={session.user.email}
               accessToken={session.accessToken}
-              canViewTransactions={session.user.role === "CUSTOMER"}
+              isCustomer={session.user.role === "CUSTOMER"}
             />
           ) : (
             <Navigate to="/login" replace />
@@ -64,6 +65,20 @@ export default function App() {
         element={
           session?.user.role === "CUSTOMER" ? (
             <CreateTransactionPage accessToken={session.accessToken} />
+          ) : (
+            <Navigate to={session ? "/" : "/login"} replace />
+          )
+        }
+      />
+
+      <Route
+        path="/accounts/:accountId/trades"
+        element={
+          session?.user.role === "CUSTOMER" ? (
+            <TradeHistoryPage
+              key={session.user.email}
+              accessToken={session.accessToken}
+            />
           ) : (
             <Navigate to={session ? "/" : "/login"} replace />
           )
