@@ -139,6 +139,17 @@ function AccountDetailContent({
           {isCustomer && (
             <div>
               <Link
+                to={`/accounts/${state.account.id}/trades/new`}
+                className="mt-4 inline-block rounded bg-emerald-400 px-4 py-2 text-slate-950 hover:bg-emerald-300"
+              >
+                บันทึกการเทรด
+              </Link>
+            </div>
+          )}
+
+          {isCustomer && (
+            <div>
+              <Link
                 to={`/accounts/${state.account.id}/trades`}
                 className="mt-4 inline-block text-emerald-400 underline"
               >
